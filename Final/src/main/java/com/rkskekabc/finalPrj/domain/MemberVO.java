@@ -1,18 +1,18 @@
 package com.rkskekabc.finalPrj.domain;
 
 public class MemberVO {
-	private String m_code;
+	private int m_code;
 	private String m_id;
 	private String m_pw;
 	private String m_name;
 	private String m_grade;
-	private String m_mileage;
-	private String m_money;
+	private int m_mileage;
+	private int m_money;
 	
-	public String getM_code() {
+	public int getM_code() {
 		return m_code;
 	}
-	public void setM_code(String m_code) {
+	public void setM_code(int m_code) {
 		this.m_code = m_code;
 	}
 	public String getM_id() {
@@ -39,16 +39,16 @@ public class MemberVO {
 	public void setM_grade(String m_grade) {
 		this.m_grade = m_grade;
 	}
-	public String getM_mileage() {
+	public int getM_mileage() {
 		return m_mileage;
 	}
-	public void setM_mileage(String m_mileage) {
+	public void setM_mileage(int m_mileage) {
 		this.m_mileage = m_mileage;
 	}
-	public String getM_money() {
+	public int getM_money() {
 		return m_money;
 	}
-	public void setM_money(String m_money) {
+	public void setM_money(int m_money) {
 		this.m_money = m_money;
 	}
 }

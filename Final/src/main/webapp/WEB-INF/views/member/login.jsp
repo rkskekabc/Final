@@ -79,7 +79,7 @@
 			<div class="form-group">
 				<label for="inputName" class="col-md-3 control-label"></label>
 				<div class="col-md-9">
-					<input type="text" name="m_pw" class="form-control" style="width: 80%" placeholder="비밀번호"/>
+					<input type="password" name="m_pw" class="form-control" style="width: 80%" placeholder="비밀번호"/>
 				</div>
 			</div>
 			<br/>
