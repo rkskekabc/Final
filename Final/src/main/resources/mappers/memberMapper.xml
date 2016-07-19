@@ -11,4 +11,8 @@
 	<insert id="doSignup" parameterType="MemberVO">
 		insert into tbl_member(m_id, m_pw, m_name) values(#{m_id}, #{m_pw}, #{m_name})
 	</insert>
+	
+	<select id="idCheck" parameterType="String" resultType="String">
+		select m_id from tbl_member where m_id = #{m_id}
+	</select>
 </mapper>

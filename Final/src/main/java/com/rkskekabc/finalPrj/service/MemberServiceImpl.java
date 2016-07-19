@@ -22,4 +22,9 @@ public class MemberServiceImpl implements MemberService {
 		dao.doSignup(member);
 	}
 
+	@Override
+	public String idCheck(String m_id) {
+		return dao.idCheck(m_id);
+	}
+
 }

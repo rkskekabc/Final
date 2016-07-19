@@ -78,9 +78,10 @@
 			</div>
 			<div class="form-group">
 				<label for="inputName" class="col-md-3 control-label">아이디</label>
-				<div class="col-md-9">
-					<input type="text" name="m_id" class="form-control" style="width: 80%" placeholder="아이디"/>
+				<div class="col-md-7">
+					<input type="text" id="m_id" name="m_id" class="form-control" style="width: 100%" placeholder="아이디"/>
 				</div>
+				<span id="idcheck" class="col-md-2"></span>
 			</div>
 			<div class="form-group">
 				<label for="inputName" class="col-md-3 control-label">비밀번호</label>
@@ -117,6 +118,32 @@
 		
 		$("#signup").on("click", function() {
 			$(location).attr('href', "/member/signup");
+		});
+		
+		$("#m_id").keyup(function() {
+			if($("#m_id").val().length >= 6) {
+				$.ajax({
+					type:"POST",
+					url:"/member/idCheck",
+					data:{
+						m_id:$("#m_id").val()
+					},
+					success:function(result){
+						if(result=='{"result":"yes"}'){
+							$("#idcheck").html('<span class="label label-success">사용가능한 아이디입니다.</span>');
+						}
+						else{
+							$("#idcheck").html('<span class="label label-danger">이미 사용중인 아이디입니다.</span>');
+						}
+					}
+				})
+			}
+			else if($("#m_id").val().length >= 1){
+				$("#idcheck").html('<span class="label label-danger">6글자 이상 입력하세요.</span>');
+			}
+			else{
+				$("#idcheck").html('');
+			}
 		});
 	})
 </script>

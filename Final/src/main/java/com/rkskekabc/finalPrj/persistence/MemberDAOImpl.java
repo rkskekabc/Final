@@ -24,9 +24,6 @@ public class MemberDAOImpl implements MemberDAO {
 		paramMap.put("m_pw", m_pw);
 		MemberVO member = sqlSession.selectOne(NAMESPACE + ".doLogin", paramMap);
 		
-		if(member == null){
-			throw new Exception();
-		}
 		return member;
 	}
 
@@ -35,4 +32,9 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.insert(NAMESPACE + ".doSignup", member);
 	}
 
+	@Override
+	public String idCheck(String m_id) {
+		return sqlSession.selectOne(NAMESPACE + ".idCheck", m_id);
+	}
+	
 }

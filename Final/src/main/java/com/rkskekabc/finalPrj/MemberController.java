@@ -1,8 +1,13 @@
 package com.rkskekabc.finalPrj;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +44,33 @@ public class MemberController {
 	public String doSignup(@ModelAttribute MemberVO member){
 		service.doSignup(member);
 		return "member/login";
+	}
+	
+	@RequestMapping(value="/idCheck", method=RequestMethod.POST)
+	public void idCheck(String m_id, HttpServletResponse resp){
+		String result = null;
+		
+		if(service.idCheck(m_id) == null){
+			result = "yes";
+		}
+		else{
+			result = "no";
+		}
+		
+		JSONObject json = new JSONObject();
+		json.put("result", result);
+		  
+		resp.setContentType("text/html;charset=utf-8");
+		PrintWriter out;
+		
+		try{
+			out = resp.getWriter();
+			out.print(json.toString());
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+
 	}
 	
 	@RequestMapping(value="/mypage", method=RequestMethod.GET)
