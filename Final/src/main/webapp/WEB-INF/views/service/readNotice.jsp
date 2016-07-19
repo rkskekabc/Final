@@ -59,7 +59,6 @@
 	<div class="col-md-12" style="height:1px; background-color: #D8D8D8"></div>
 </div>
 <!-- 상단바 끝 -->
-
   <div class="row" style="margin-bottom: 1%">
 	  <div class="col-md-2"></div>
 	  <div class="col-md-8">
@@ -67,36 +66,25 @@
 	  </div>
 	  <div class="col-md-2"></div>
   </div>
-  <!-- Nav tabs -->
+
   <div class="row">
+	  <!-- Nav tabs -->
 	  <div class="col-sm-2"></div>
 	  <div class="col-sm-2" style="background-color: #eeeeee; padding-top:1%; padding-bottom: 20%">
 		  <ul class="nav nav-pills nav-stacked" role="tablist">
-		    <li role="presentation"><a href="/service/notice" aria-controls="notice" role="tab"><span style="color: #aaaaaa; font-size: medium">공지사항</span></a></li>
+		    <li role="presentation" class="active"><a href="/service/notice" aria-controls="notice" role="tab"><span style="font-size: medium">공지사항</span></a></li>
 		    <li role="presentation"><a href="/service/faq" aria-controls="faq" role="tab"><span style="color: #aaaaaa; font-size: medium">FAQ</span></a></li>
-		    <li role="presentation" class="active"><a href="/service/request" aria-controls="request" role="tab"><span style="font-size: medium">1:1문의</span></a></li>
-
+		    <li role="presentation"><a href="/service/request" aria-controls="request" role="tab"><span style="color: #aaaaaa; font-size: medium">1:1문의</span></a></li>
 		  </ul>
 	  </div>
 	  <!-- Tab panes -->
 	  <div class="col-sm-6">
 		  <table class="table">
 		  	<tr>
-		  		<th>번호</th><th>제목</th><th>날짜</th><th>상태</th>
-		  	</tr>
-		  	<!-- 
-		  	<tr>
-		  		<td align="center" colspan="4">문의내역이 없습니다.</td>
-		  	</tr>
-		  	-->
-		  	<tr>
-		  		<td>2</td><td>문의2</td><td>2016.7.19</td><td>미답변</td>
+		  		<th>제목 : 테스트</th>
 		  	</tr>
 		  	<tr>
-		  		<td>1</td><td>문의1</td><td>2016.7.19</td><td>미답변</td>
-		  	</tr>
-		  	<tr>
-		  		<td align="center" colspan="4"><button type="button" class="btn btn-success">문의하기</button></td>
+		  		<td>내용</td>
 		  	</tr>
 		  </table>
 	  </div>

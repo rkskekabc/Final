@@ -25,4 +25,9 @@ public class NoticeController {
 	public String requestWriteHandler(){
 		return "service/requestWrite";
 	}
+	
+	@RequestMapping("readNotice")
+	public String readNoticeHandler(){
+		return "service/readNotice";
+	}
 }
