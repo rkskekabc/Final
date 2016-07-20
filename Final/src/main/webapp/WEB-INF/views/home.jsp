@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
 <html>
 <head>
 	<title>Home</title>
@@ -45,7 +45,15 @@
 		        <li><a href="/member/mypage" style="color: #6DD66D">마이페이지</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><button id="login" type="button" class="btn btn-default btn-xs" style="margin-top: 15px">로그인</button>&nbsp;</li>
+		      	<c:choose>
+		      		<c:when test="${member == null}">
+		      			<li><button id="login" type="button" class="btn btn-default btn-xs" style="margin-top: 15px">로그인</button>&nbsp;</li>
+		      		</c:when>
+		      		<c:when test="${member != null}">
+		      			<li><label class="label label-info" style="margin-top: 15px">${member.m_name}님, 안녕하세요!</label>&nbsp;</li>
+		        		<li><button id="logout" type="button" class="btn btn-default btn-xs" style="margin-top: 15px" data-toggle="modal" data-target="#logoutmodal">로그아웃</button>&nbsp;</li>
+		      		</c:when>
+		      	</c:choose>
 		        <li><button id="signup" type="button" class="btn btn-default btn-xs" style="margin-top: 15px">회원가입</button></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
@@ -150,12 +158,34 @@
 <div id="footer" class="row">
 	<div class="col-md-12" style="height:150px; background-color: #424242; margin-top: 10px"></div>
 </div>
+<!-- 로그아웃 모달창 -->
+<div id="logoutmodal" class="modal bs-example-modal-sm" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">로그아웃 확인</h4>
+      </div>
+      <div class="modal-body">
+        <p>${member.m_name}님, 로그아웃 하시겠습니까?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+        <button id="logoutconfirm" type="button" class="btn btn-primary">확인</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </body>
 <script src="<c:url value="/resources/js/bootstrap.min.js"></c:url>"></script>
 <script>
 	$(document).ready(function() {
 		$("#login").on("click", function() {
 			$(location).attr('href', "/member/login");
+		});
+
+		$("#logoutconfirm").on("click", function() {
+			$(location).attr('href', "/member/logout");
 		});
 		
 		$("#signup").on("click", function() {

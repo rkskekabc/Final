@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,28 +73,33 @@
 			<div class="form-group">
 				<label for="inputName" class="col-md-3 control-label"></label>
 				<div class="col-md-9">
-					<input type="text" name="m_id" class="form-control" style="width: 80%" placeholder="아이디"/>
+					<input type="text" id="m_id" name="m_id" class="form-control" style="width: 80%" placeholder="아이디"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputName" class="col-md-3 control-label"></label>
 				<div class="col-md-9">
-					<input type="password" name="m_pw" class="form-control" style="width: 80%" placeholder="비밀번호"/>
+					<input type="password" id="m_pw" name="m_pw" class="form-control" style="width: 80%" placeholder="비밀번호"/>
 				</div>
 			</div>
 			<br/>
 			<div class="col-md-3"></div>
 			<div class="col-md-9">
-				<input type="submit" value="로그인" class="btn btn-success btn-lg" style="width: 80%"/>
+				<input id="dologin" type="submit" value="로그인" class="btn btn-lg" style="width: 80%" disabled="disabled"/>
 			</div>
 		</form>
 		<br/><br/><br/>
 		<a href="/member/signup" style="margin-right: 8%; margin-left: 30%">회원가입</a>
 		<a href="#" style="margin-right: 8%">아이디찾기</a>
 		<a href="#">비밀번호찾기</a>
+		<br/><br/><br/>
+		<c:if test="${login eq 'fail'}">
+			<span id="loginfail" class="label label-danger" style="margin-left: 40%">아이디 또는 비밀번호가 틀렸습니다.</span>
+		</c:if>
 	</div>
 	<div class="col-md-4"></div>
 </div>
+
 </div>
 <div id="footer" class="row">
 	<div class="col-md-12" style="height:150px; background-color: #424242; margin-top: 10px"></div>
@@ -109,6 +114,28 @@
 		
 		$("#signup").on("click", function() {
 			$(location).attr('href', "/member/signup");
+		});
+		
+		$("#m_id").keyup(function() {
+			if($("#m_id").val().length >= 1 && $("#m_pw").val().length >= 1){
+				$("#dologin").removeAttr("disabled");
+				$("#dologin").addClass("btn-success");
+			}
+			else{
+				$("#dologin").attr("disabled", true);
+				$("#dologin").removeClass("btn-success");
+			}
+		});
+		
+		$("#m_pw").keyup(function() {
+			if($("#m_id").val().length >= 1 && $("#m_pw").val().length >= 1){
+				$("#dologin").removeAttr("disabled");
+				$("#dologin").addClass("btn-success");
+			}
+			else{
+				$("#dologin").attr("disabled", true);
+				$("#dologin").removeClass("btn-success");
+			}
 		});
 	})
 </script>

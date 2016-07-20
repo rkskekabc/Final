@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,10 +29,27 @@ public class MemberController {
 		return "member/login";
 	}
 	
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(HttpServletRequest req){
+		req.getSession().invalidate();
+		return "home";
+	}
+	
 	@RequestMapping(value="/doLogin", method=RequestMethod.POST)
-	public String doLogin(String m_id, String m_pw, HttpServletRequest req) throws Exception{
-		MemberVO member = service.doLogin(m_id, m_pw);
-		WebUtils.setSessionAttribute(req, "member", member);
+	public String doLogin(String m_id, String m_pw, HttpServletRequest req, Model model) throws Exception{
+		try{
+			MemberVO member = service.doLogin(m_id, m_pw);
+			if(member == null){
+				String str = "fail";
+				model.addAttribute("login", str);
+				return "member/login";
+			}
+			WebUtils.setSessionAttribute(req, "member", member);
+		}
+		catch(Exception e){
+			return "member/login";
+		}
+		
 		return "home";
 	}
 	
