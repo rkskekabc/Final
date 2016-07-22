@@ -96,18 +96,20 @@ public class MemberController {
 		return "member/mypage";
 	}
 	
-	@RequestMapping(value="/mygroup", method=RequestMethod.GET)
+	@RequestMapping(value="/doupdate", method=RequestMethod.POST)
+	public String doUpdate(@ModelAttribute MemberVO member, HttpServletRequest req){
+		service.doUpdate(member);
+		req.getSession().invalidate();
+		return "member/login";
+	}
+	
+	@RequestMapping(value="/uselist", method=RequestMethod.GET)
 	public String mygroup(){
-		return "member/mygroup";
+		return "member/uselist";
 	}
 	
 	@RequestMapping(value="/paylist", method=RequestMethod.GET)
 	public String paylist(){
 		return "member/paylist";
-	}
-	
-	@RequestMapping(value="/mileage", method=RequestMethod.GET)
-	public String mileage(){
-		return "member/mileage";
 	}
 }

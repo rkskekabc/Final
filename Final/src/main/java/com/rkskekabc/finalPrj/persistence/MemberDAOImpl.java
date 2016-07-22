@@ -36,5 +36,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public String idCheck(String m_id) {
 		return sqlSession.selectOne(NAMESPACE + ".idCheck", m_id);
 	}
+
+	@Override
+	public void doUpdate(MemberVO member) {
+		System.out.println(member.getM_code());
+		sqlSession.update(NAMESPACE + ".doUpdate", member);
+	}
 	
 }

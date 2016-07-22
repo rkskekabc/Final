@@ -27,4 +27,9 @@ public class MemberServiceImpl implements MemberService {
 		return dao.idCheck(m_id);
 	}
 
+	@Override
+	public void doUpdate(MemberVO member) {
+		dao.doUpdate(member);
+	}
+
 }

@@ -12,13 +12,25 @@
 	#wrap{min-height:100%}
 	#footer{margin-top:-1em;height:1em}
 	
-	#nav{
+	#navbar{
 		background-color: white;
+	}
+	
+	#nav{
 		padding-top: 30px;
 	}
 	
 	a{
 		font-weight: bold;
+	}
+	
+	#carousel.active{
+		background-color: #6DD66D;
+		border-color: #6DD66D;
+	}
+	
+	#carousel{
+		border-color: #6DD66D;
 	}
 </style>
 <body>
@@ -28,33 +40,40 @@
 <div class="row">
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
-		<nav class="navbar navbar-default" style="border-color: white;">
-		  <div id="nav" class="container-fluid">
+		<nav class="navbar navbar-default" style="border-color: white">
+		  <div id="navbar" class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
-		    <div class="navbar-header" style="margin-right: 80px;">
-		      <a class="navbar-brand" href="/" style="color: #6DD66D">Green Cycle</a>
+		    <div class="navbar-header col-md-2" style="margin-right: 40px;">
+		      <a class="navbar-brand" href="/"><img alt="Brand" src="<c:url value="/resources/images/logo.png"></c:url>" style="width: 100%; height: auto; margin-top: 20px"></img></a>
 		    </div>
 		
 		    <!-- Collect the nav links, forms, and other content for toggling -->
-		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    <div id="nav" class="collapse navbar-collapse">
 		      <ul class="nav navbar-nav">
 		        <li><a href="#">서비스안내</a></li>
 		        <li><a href="#">요금안내</a></li>
 		        <li><a href="#">고객센터</a></li>
 		        <li><a href="#" style="color: #6DD66D">Station찾기/예약</a></li>
-		        <li><a href="/member/mypage" style="color: #6DD66D">마이페이지</a></li>
+		        <c:choose>
+			        <c:when test="${member == null}">
+			        	<li><a href="/member/login" style="color: #6DD66D">마이페이지</a></li>
+			        </c:when>
+			        <c:when test="${member != null}">
+			        	<li><a href="/member/mypage" style="color: #6DD66D">마이페이지</a></li>
+			        </c:when>
+		        </c:choose>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 		      	<c:choose>
 		      		<c:when test="${member == null}">
-		      			<li><button id="login" type="button" class="btn btn-default btn-xs" style="margin-top: 15px">로그인</button>&nbsp;</li>
+		      			<li><button id="signup" type="button" class="btn btn-default btn-xs" style="margin-top: 15px">회원가입</button>&nbsp;</li>
+		      			<li><button id="login" type="button" class="btn btn-default btn-xs" style="margin-top: 15px">로그인</button></li>
 		      		</c:when>
 		      		<c:when test="${member != null}">
-		      			<li><label class="label label-info" style="margin-top: 15px">${member.m_name}님, 안녕하세요!</label>&nbsp;</li>
-		        		<li><button id="logout" type="button" class="btn btn-default btn-xs" style="margin-top: 15px" data-toggle="modal" data-target="#logoutmodal">로그아웃</button>&nbsp;</li>
+		      			<li><button id="mypage" type="button" class="btn btn-success btn-xs" style="margin-top: 15px">${member.m_name}님, 안녕하세요!</button>&nbsp;</li>
+		        		<li><button id="logout" type="button" class="btn btn-default btn-xs" style="margin-top: 15px" data-toggle="modal" data-target="#logoutmodal">로그아웃</button></li>
 		      		</c:when>
 		      	</c:choose>
-		        <li><button id="signup" type="button" class="btn btn-default btn-xs" style="margin-top: 15px">회원가입</button></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -68,42 +87,28 @@
 <div id="wrap">
 <div class="row" style="margin-top: 10px">
 	<div class="col-md-2"></div>
-	<div class="col-md-4">
+	<div class="col-md-8">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		  <!-- Indicators -->
 		  <ol class="carousel-indicators">
-		    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-		    <li data-target="#myCarousel" data-slide-to="1"></li>
-		    <li data-target="#myCarousel" data-slide-to="2"></li>
+			    <li id="carousel" data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			    <li id="carousel" data-target="#myCarousel" data-slide-to="1"></li>
+			    <li id="carousel" data-target="#myCarousel" data-slide-to="2"></li>
 		  </ol>
 		
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner" role="listbox">
 		    <div class="item active">
-		      <img src="<c:url value="/resources/images/Tulips.jpg"></c:url>" alt="cycle" style="width: 100%; height: auto;">
-		      <div class="carousel-caption">
-		        	첫번째 사진
-		      </div>
+		      <img src="<c:url value="/resources/images/main1.jpg"></c:url>" alt="main" style="width: 100%; height: 50%;">
 		    </div>
 		    <div class="item">
-		      <img src="<c:url value="/resources/images/Hydrangeas.jpg"></c:url>" alt="cycle" style="width: 100%; height: auto;">
-		      <div class="carousel-caption">
-		        	두번째 사진
-		      </div>
+		      <img src="<c:url value="/resources/images/main2.jpg"></c:url>" alt="main" style="width: 100%; height: 50%;">
 		    </div>
 		    <div class="item">
-		      <img src="<c:url value="/resources/images/Chrysanthemum.jpg"></c:url>" alt="cycle" style="width: 100%; height: auto;">
-		      <div class="carousel-caption">
-		        	세번째 사진
-		      </div>
+		      <img src="<c:url value="/resources/images/main3.jpg"></c:url>" alt="main" style="width: 100%; height: 50%;">
 		    </div>
 		  </div>
 		</div>
-	</div>
-	<div class="col-md-4">
-		<a href="#" class="thumbnail">
-			<img src="<c:url value="/resources/images/Koala.jpg"></c:url>" alt="cycle" style="width: 85%; height: auto;">
-		</a>
 	</div>
 	<div class="col-md-2"></div>
 </div>
@@ -112,21 +117,21 @@
 	<div class="col-md-2"></div>
 	<div class="col-md-4">
 		<div class="btn-group" role="group">
-			<button type="button" id="myButton" class="btn btn-info" style="width: 100%; padding: 15px; margin-bottom: 10px; font-size: 25px; font-weight: bold;">Station 검색 바로가기</button>
-			<button type="button" class="btn btn-default" style="width: 25%;"><img src="<c:url value="/resources/images/Desert.jpg"></c:url>" width="100%" height="20%"></img></button>
-			<button type="button" class="btn btn-default" style="width: 25%;"><img src="<c:url value="/resources/images/Jellyfish.jpg"></c:url>" width="100%" height="20%"></img></button>
-			<button type="button" class="btn btn-default" style="width: 25%;"><img src="<c:url value="/resources/images/Lighthouse.jpg"></c:url>" width="100%" height="20%"></img></button>
-			<button type="button" class="btn btn-default" style="width: 25%;"><img src="<c:url value="/resources/images/Penguins.jpg"></c:url>" width="100%" height="20%"></img></button>
+			<button type="button" id="myButton" class="btn btn-success" style="width: 100%; padding: 15px; margin-bottom: 10px; font-size: 25px; font-weight: bold;"><i class="glyphicon glyphicon-map-marker" style="margin-right: 1%"></i>Station 검색 바로가기</button>
+			<button type="button" class="btn btn-default" style="width: 25%; font-weight: bold;"><img src="<c:url value="/resources/images/info3.png"></c:url>" width="80%" height="12%"></img><br/><br/>이용방법</button>
+			<button type="button" class="btn btn-default" style="width: 25%; font-weight: bold;"><img src="<c:url value="/resources/images/payment.png"></c:url>" width="80%" height="12%"></img><br/><br/>이용권구매</button>
+			<button type="button" class="btn btn-default" style="width: 25%; font-weight: bold;"><img src="<c:url value="/resources/images/group3.png"></c:url>" width="80%" height="12%"></img><br/><br/>동호회</button>
+			<button type="button" class="btn btn-default" style="width: 25%; font-weight: bold;"><img src="<c:url value="/resources/images/payment3.png"></c:url>" width="80%" height="12%"></img><br/><br/>쿠폰북</button>
 		</div>
 	</div>
 	<div class="col-md-4">
 	  <!-- Nav tabs -->
 	  <ul class="nav nav-tabs" role="tablist">
-	    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">공지사항</a></li>
-	    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">이용후기</a></li>
-	    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">문의사항</a></li>
+	    <li id="navtab1" role="presentation" class="active"><a id="tab1" href="#home" aria-controls="home" role="tab" data-toggle="tab">공지사항</a></li>
+	    <li id="navtab2" role="presentation"><a id="tab2" href="#profile" aria-controls="profile" role="tab" data-toggle="tab" style="color: #6DD66D">이용후기</a></li>
+	    <li id="navtab3" role="presentation"><a id="tab3" href="#messages" aria-controls="messages" role="tab" data-toggle="tab" style="color: #6DD66D">문의사항</a></li>
 	  </ul>
-	
+		<br/>
 	  <!-- Tab panes -->
 	  <div class="tab-content">
 	    <div role="tabpanel" class="tab-pane active" id="home">
@@ -156,7 +161,12 @@
 </div>
 </div>
 <div id="footer" class="row">
-	<div class="col-md-12" style="height:150px; background-color: #424242; margin-top: 10px"></div>
+	<div class="col-md-12" style="height:150px; background-color: #424242; margin-top: 10px">
+		<footer style="margin-left: 42%; margin-top: 2%">
+		  <p><a href="http://rkskekabc.cafe24.com/prjSemi/main.jsp">Armadillo</a></p>
+		  <p>&copy; Copyright 2016 All rights reserved by BABJO.</p>
+		</footer>
+	</div>
 </div>
 <!-- 로그아웃 모달창 -->
 <div id="logoutmodal" class="modal bs-example-modal-sm" tabindex="-1" role="dialog">
@@ -191,6 +201,28 @@
 		$("#signup").on("click", function() {
 			$(location).attr('href', "/member/signup");
 		});
+		
+		$("#mypage").on("click", function() {
+			$(location).attr('href', "/member/mypage");
+		});
+		
+		$("#navtab1").on("click", function() {
+			$("#tab1").css("color", "#555");
+			$("#tab2").css("color", "#6DD66D");
+			$("#tab3").css("color", "#6DD66D");
+		})
+		
+		$("#navtab2").on("click", function() {
+			$("#tab1").css("color", "#6DD66D");
+			$("#tab2").css("color", "#555");
+			$("#tab3").css("color", "#6DD66D");
+		})
+		
+		$("#navtab3").on("click", function() {
+			$("#tab1").css("color", "#6DD66D");
+			$("#tab2").css("color", "#6DD66D");
+			$("#tab3").css("color", "#555");
+		})
 	})
 </script>
 </html>
