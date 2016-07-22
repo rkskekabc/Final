@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=EUC-KR"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +22,7 @@
 	}
 </style>
 <body>
-<!-- »ó´Ü¹Ù ½ÃÀÛ -->
+<!-- ìƒë‹¨ë°” ì‹œìž‘ -->
 <div class="row">
 	<div class="col-md-12" style="height:10px; background-color: #6DD66D"></div>
 </div>
@@ -39,15 +39,15 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		        <li><a href="#">¼­ºñ½º¾È³»</a></li>
-		        <li><a href="#">¿ä±Ý¾È³»</a></li>
-		        <li><a href="#">°í°´¼¾ÅÍ</a></li>
-		        <li><a href="#" style="color: #6DD66D">StationÃ£±â/¿¹¾à</a></li>
-		        <li><a href="#" style="color: #6DD66D">¸¶ÀÌÆäÀÌÁö</a></li>
+		        <li><a href="#">ì„œë¹„ìŠ¤ì•ˆë‚´</a></li>
+		        <li><a href="#">ìš”ê¸ˆì•ˆë‚´</a></li>
+		        <li><a href="#">ê³ ê°ì„¼í„°</a></li>
+		        <li><a href="#" style="color: #6DD66D">Stationì°¾ê¸°/ì˜ˆì•½</a></li>
+		        <li><a href="#" style="color: #6DD66D">ë§ˆì´íŽ˜ì´ì§€</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><button type="button" class="btn btn-default btn-xs" style="margin-top: 15px">·Î±×ÀÎ</button>&nbsp;</li>
-		        <li><button type="button" class="btn btn-default btn-xs" style="margin-top: 15px">È¸¿ø°¡ÀÔ</button></li>
+		        <li><button type="button" class="btn btn-default btn-xs" style="margin-top: 15px">ë¡œê·¸ì¸</button>&nbsp;</li>
+		        <li><button type="button" class="btn btn-default btn-xs" style="margin-top: 15px">íšŒì›ê°€ìž…</button></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -58,12 +58,12 @@
 <div class="row">
 	<div class="col-md-12" style="height:1px; background-color: #D8D8D8"></div>
 </div>
-<!-- »ó´Ü¹Ù ³¡ -->
+<!-- ìƒë‹¨ë°” ë -->
 
   <div class="row" style="margin-bottom: 1%">
 	  <div class="col-md-2"></div>
 	  <div class="col-md-8">
-	  	<h1>°í°´¼¾ÅÍ</h1>
+	  	<h1>ê³ ê°ì„¼í„°</h1>
 	  </div>
 	  <div class="col-md-2"></div>
   </div>
@@ -72,40 +72,34 @@
 	  <div class="col-sm-2"></div>
 	  <div class="col-sm-2" style="background-color: #eeeeee; padding-top:1%; padding-bottom: 20%">
 		  <ul class="nav nav-pills nav-stacked" role="tablist">
-		    <li role="presentation"><a href="/service/notice" aria-controls="notice" role="tab"><span style="color: #aaaaaa; font-size: medium">°øÁö»çÇ×</span></a></li>
+		    <li role="presentation"><a href="/service/notice" aria-controls="notice" role="tab"><span style="color: #aaaaaa; font-size: medium">ê³µì§€ì‚¬í•­</span></a></li>
 		    <li role="presentation"><a href="/service/faq" aria-controls="faq" role="tab"><span style="color: #aaaaaa; font-size: medium">FAQ</span></a></li>
-		    <li role="presentation" class="active"><a href="/service/request" aria-controls="request" role="tab"><span style="font-size: medium">1:1¹®ÀÇ</span></a></li>
+		    <li role="presentation" class="active"><a href="/service/request" aria-controls="request" role="tab"><span style="font-size: medium">1:1ë¬¸ì˜</span></a></li>
 
 		  </ul>
 	  </div>
 	  <!-- Tab panes -->
 	  <div class="col-sm-6">
-		  <form class="form-horizontal">
+		  <form class="form-horizontal" action="requestComplete">
+		  	 <input type="hidden" name="m_code" value="1"/>
 			  <div class="form-group">
-			    <label for="inputWriter" class="col-sm-2 control-label">ÀÛ¼ºÀÚ</label>
+			    <label for="title" class="col-sm-2 control-label">ì œëª©</label>
 			    <div class="col-sm-8">
-			      <input type="text" class="form-control" name="inputWriter" placeholder="ÀÛ¼ºÀÚ">
+			      <input type="text" class="form-control" name="title" placeholder="ì œëª©">
 			    </div>
 			    <div class="col-sm-2"></div>
 			  </div>
 			  <div class="form-group">
-			    <label for="inputTitle" class="col-sm-2 control-label">Á¦¸ñ</label>
+			    <label for="content" class="col-sm-2 control-label">ë‚´ìš©</label>
 			    <div class="col-sm-8">
-			      <input type="text" class="form-control" name="inputTitle" placeholder="Á¦¸ñ">
-			    </div>
-			    <div class="col-sm-2"></div>
-			  </div>
-			  <div class="form-group">
-			    <label for="inputTitle" class="col-sm-2 control-label">³»¿ë</label>
-			    <div class="col-sm-8">
-			      <textarea class="form-control" rows="20" cols="10"></textarea>
+			      <textarea class="form-control" rows="20" cols="10" name="content"></textarea>
 			    </div>
 			    <div class="col-sm-2"></div>
 			  </div>
 			  <div class="form-group">
 			    <div class="col-sm-offset-8 col-sm-4">
-			      <button type="submit" class="btn btn-default">È®ÀÎ</button>&nbsp;
-			      <button type="reset" class="btn btn-default">ÃÊ±âÈ­</button>
+			      <button type="submit" class="btn btn-default">í™•ì¸</button>&nbsp;
+			      <button type="reset" class="btn btn-default">ì´ˆê¸°í™”</button>
 			    </div>
 			  </div>
 		 </form>

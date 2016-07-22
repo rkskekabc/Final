@@ -1,4 +1,4 @@
-package com.rkskekabc.finalPrj;
+package com.rkskekabc.finalPrj.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

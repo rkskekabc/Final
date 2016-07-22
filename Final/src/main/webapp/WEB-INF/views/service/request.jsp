@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,11 @@
 		color:#5cb85c;
 	}
 </style>
+<script>
+	function fnRequest(){
+		location.href='requestWrite';
+	}
+</script>
 <body>
 <!-- 상단바 시작 -->
 <div class="row">
@@ -89,14 +95,16 @@
 		  		<td align="center" colspan="4">문의내역이 없습니다.</td>
 		  	</tr>
 		  	-->
+		  	<c:forEach var="i" items="${requestList}">
+		  		<tr>
+		  			<td>${i.r_code}</td>
+		  			<td>${i.title}</td>
+		  			<td>${i.regdate}</td>
+		  			<td>${i.status}</td>
+		  		</tr>
+		  	</c:forEach>
 		  	<tr>
-		  		<td>2</td><td>문의2</td><td>2016.7.19</td><td>미답변</td>
-		  	</tr>
-		  	<tr>
-		  		<td>1</td><td>문의1</td><td>2016.7.19</td><td>미답변</td>
-		  	</tr>
-		  	<tr>
-		  		<td align="center" colspan="4"><button type="button" class="btn btn-success">문의하기</button></td>
+		  		<td align="center" colspan="4"><button type="button" class="btn btn-success" onclick="fnRequest()">문의하기</button></td>
 		  	</tr>
 		  </table>
 	  </div>

@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,11 +21,6 @@
 		color:#5cb85c;
 	}
 </style>
-<script>
-	function fnNotice(){
-		location.href='noticeWrite';
-	}
-</script>
 <body>
 <!-- 상단바 시작 -->
 <div class="row">
@@ -65,6 +59,7 @@
 	<div class="col-md-12" style="height:1px; background-color: #D8D8D8"></div>
 </div>
 <!-- 상단바 끝 -->
+
   <div class="row" style="margin-bottom: 1%">
 	  <div class="col-md-2"></div>
 	  <div class="col-md-8">
@@ -77,29 +72,36 @@
 	  <div class="col-sm-2"></div>
 	  <div class="col-sm-2" style="background-color: #eeeeee; padding-top:1%; padding-bottom: 20%">
 		  <ul class="nav nav-pills nav-stacked" role="tablist">
-		    <li role="presentation" class="active"><a href="/service/notice" aria-controls="notice" role="tab"><span style="font-size: medium">공지사항</span></a></li>
+		    <li role="presentation"><a href="/service/notice" aria-controls="notice" role="tab"><span style="color: #aaaaaa; font-size: medium">공지사항</span></a></li>
 		    <li role="presentation"><a href="/service/faq" aria-controls="faq" role="tab"><span style="color: #aaaaaa; font-size: medium">FAQ</span></a></li>
-		    <li role="presentation"><a href="/service/request" aria-controls="request" role="tab"><span style="color: #aaaaaa; font-size: medium">1:1문의</span></a></li>
+		    <li role="presentation" class="active"><a href="/service/request" aria-controls="request" role="tab"><span style="font-size: medium">1:1문의</span></a></li>
+
 		  </ul>
 	  </div>
 	  <!-- Tab panes -->
 	  <div class="col-sm-6">
-		  <table class="table table-striped">
-		  	<tr>
-		  		<th>번호</th><th>제목</th><th>작성자</th><th>작성일</th>
-		  	</tr>
-		  	<c:forEach var="i" items="${noticeList}">
-		  		<tr>
-		  			<td>${i.n_code}</td>
-		  			<td><a href="noticeRead?n_code=${i.n_code}">${i.title}</a></td>
-		  			<td>${i.writer}</td>
-		  			<td>${i.regdate}</td>
-		  		</tr>
-		  	</c:forEach>
-		  	<tr>
-		  		<td align="center" colspan="4" style="background-color: #ffffff"><button type="button" class="btn btn-success" onclick="fnNotice()">글작성</button></td>
-		  	</tr>
-		  </table>
+		  <form class="form-horizontal" action="noticeComplete" method="POST">
+			  <div class="form-group">
+			    <label for="title" class="col-sm-2 control-label">제목</label>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" name="title" placeholder="제목">
+			    </div>
+			    <div class="col-sm-2"></div>
+			  </div>
+			  <div class="form-group">
+			    <label for="content" class="col-sm-2 control-label">내용</label>
+			    <div class="col-sm-8">
+			      <textarea class="form-control" rows="20" cols="10" name="content"></textarea>
+			    </div>
+			    <div class="col-sm-2"></div>
+			  </div>
+			  <div class="form-group">
+			    <div class="col-sm-offset-8 col-sm-4">
+			      <button type="submit" class="btn btn-default">확인</button>&nbsp;
+			      <button type="reset" class="btn btn-default">초기화</button>
+			    </div>
+			  </div>
+		 </form>
 	  </div>
 	  <div class="col-md-2"></div>
   </div>

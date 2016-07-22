@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,11 +21,6 @@
 		color:#5cb85c;
 	}
 </style>
-<script>
-	function fnNotice(){
-		location.href='noticeWrite';
-	}
-</script>
 <body>
 <!-- 상단바 시작 -->
 <div class="row">
@@ -72,8 +66,9 @@
 	  </div>
 	  <div class="col-md-2"></div>
   </div>
-  <!-- Nav tabs -->
+
   <div class="row">
+	  <!-- Nav tabs -->
 	  <div class="col-sm-2"></div>
 	  <div class="col-sm-2" style="background-color: #eeeeee; padding-top:1%; padding-bottom: 20%">
 		  <ul class="nav nav-pills nav-stacked" role="tablist">
@@ -84,22 +79,20 @@
 	  </div>
 	  <!-- Tab panes -->
 	  <div class="col-sm-6">
-		  <table class="table table-striped">
+	  <form name="form" action="noticeDelete">
+	 	  <input type="hidden" name="n_code" value="${notice.n_code}" />
+		  <table class="table">
 		  	<tr>
-		  		<th>번호</th><th>제목</th><th>작성자</th><th>작성일</th>
+		  		<th>제목 : ${notice.title}</th>
 		  	</tr>
-		  	<c:forEach var="i" items="${noticeList}">
-		  		<tr>
-		  			<td>${i.n_code}</td>
-		  			<td><a href="noticeRead?n_code=${i.n_code}">${i.title}</a></td>
-		  			<td>${i.writer}</td>
-		  			<td>${i.regdate}</td>
-		  		</tr>
-		  	</c:forEach>
 		  	<tr>
-		  		<td align="center" colspan="4" style="background-color: #ffffff"><button type="button" class="btn btn-success" onclick="fnNotice()">글작성</button></td>
+		  		<td>${notice.content}</td>
+		  	</tr>
+		  	<tr>
+		  		<td><button type="button" class="btn" onclick="fnToList">목록으로</button></td>
 		  	</tr>
 		  </table>
+	  </form>
 	  </div>
 	  <div class="col-md-2"></div>
   </div>

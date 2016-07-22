@@ -21,6 +21,17 @@
 		color:#5cb85c;
 	}
 </style>
+<script>
+	function fnDelete(){
+		var question = confirm("삭제하시겠습니까?");
+		if(question == true){
+			document.form.submit();
+		}
+		else{
+			return;
+		}
+	}
+</script>
 <body>
 <!-- 상단바 시작 -->
 <div class="row">
@@ -79,14 +90,20 @@
 	  </div>
 	  <!-- Tab panes -->
 	  <div class="col-sm-6">
+	  <form name="form" action="noticeDelete">
+	 	  <input type="hidden" name="n_code" value="${notice.n_code}" />
 		  <table class="table">
 		  	<tr>
-		  		<th>제목 : 테스트</th>
+		  		<th>제목 : ${notice.title}</th>
 		  	</tr>
 		  	<tr>
-		  		<td>내용</td>
+		  		<td>${notice.content}</td>
+		  	</tr>
+		  	<tr>
+		  		<td><button type="button" class="btn" onclick="fnDelete()">삭제</button></td>
 		  	</tr>
 		  </table>
+	  </form>
 	  </div>
 	  <div class="col-md-2"></div>
   </div>
