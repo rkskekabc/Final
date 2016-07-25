@@ -42,8 +42,9 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("requestRead")
-	public String requstReadHandler(){
-		return null;
+	public String requstReadHandler(int r_code, Model model) throws Exception{
+		model.addAttribute("request", rService.readRequest(r_code));
+		return "service/requestRead";
 	}
 	
 	@RequestMapping("requestWrite")
@@ -54,7 +55,19 @@ public class NoticeController {
 	@RequestMapping("requestComplete")
 	public String requestCompleteHandler(RequestVO vo) throws Exception{
 		rService.writeRequest(vo);
-		return "service/request";
+		return "redirect:/service/request";
+	}
+	
+	@RequestMapping("requestAnswer")
+	public String requestAnswerHandler(int r_code, Model model) throws Exception{
+		model.addAttribute("request", rService.readRequest(r_code));
+		return "service/requestAnswer";
+	}
+	
+	@RequestMapping("requestAnswerComplete")
+	public String requestAnswerCompleteHandler(RequestVO vo) throws Exception{
+		rService.writeAnswer(vo);
+		return "redirect:/service/request";
 	}
 	
 	@RequestMapping("noticeRead")

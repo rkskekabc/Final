@@ -55,6 +55,9 @@ public class RequestVO {
 	public int getR_code() {
 		return r_code;
 	}
+	public void setR_code(int r_code) {
+		this.r_code = r_code;
+	}
 	public String getRegdate() {
 		return regdate;
 	}

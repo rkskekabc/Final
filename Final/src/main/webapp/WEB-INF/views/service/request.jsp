@@ -98,7 +98,7 @@
 		  	<c:forEach var="i" items="${requestList}">
 		  		<tr>
 		  			<td>${i.r_code}</td>
-		  			<td>${i.title}</td>
+		  			<td><a href="requestRead?r_code=${i.r_code}">${i.title}</a></td>
 		  			<td>${i.regdate}</td>
 		  			<td>${i.status}</td>
 		  		</tr>

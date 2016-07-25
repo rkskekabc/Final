@@ -32,7 +32,7 @@ public class RequestDAOImpl implements RequestDAO {
 
 	@Override
 	public void writeAnswer(RequestVO vo) throws Exception {
-		
+		session.update(namespace + ".writeAnswer", vo);
 	}
 
 }

@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,15 @@
 		color:#5cb85c;
 	}
 </style>
+<script>
+	function fnToList(){
+		location.href = 'request';
+	}
+	
+	function fnAnswer(){
+		location.href = "requestAnswer?r_code=${request.r_code}";
+	}
+</script>
 <body>
 <!-- 상단바 시작 -->
 <div class="row">
@@ -72,24 +82,27 @@
 	  <div class="col-sm-2"></div>
 	  <div class="col-sm-2" style="background-color: #eeeeee; padding-top:1%; padding-bottom: 20%">
 		  <ul class="nav nav-pills nav-stacked" role="tablist">
-		    <li role="presentation" class="active"><a href="/service/notice" aria-controls="notice" role="tab"><span style="font-size: medium">공지사항</span></a></li>
+		    <li role="presentation"><a href="/service/notice" aria-controls="notice" role="tab"><span style="color: #aaaaaa; font-size: medium">공지사항</span></a></li>
 		    <li role="presentation"><a href="/service/faq" aria-controls="faq" role="tab"><span style="color: #aaaaaa; font-size: medium">FAQ</span></a></li>
-		    <li role="presentation"><a href="/service/request" aria-controls="request" role="tab"><span style="color: #aaaaaa; font-size: medium">1:1문의</span></a></li>
+		    <li role="presentation" class="active"><a href="/service/request" aria-controls="request" role="tab"><span style="font-size: medium">1:1문의</span></a></li>
 		  </ul>
 	  </div>
 	  <!-- Tab panes -->
 	  <div class="col-sm-6">
-	  <form name="form" action="noticeDelete">
-	 	  <input type="hidden" name="n_code" value="${notice.n_code}" />
+	  <form name="form">
+	 	  <input type="hidden" name="r_code" value="${request.r_code}" />
 		  <table class="table">
 		  	<tr>
-		  		<th>제목 : ${notice.title}</th>
+		  		<th>제목 : ${request.title}</th>
 		  	</tr>
 		  	<tr>
-		  		<td>${notice.content}</td>
+		  		<td><pre>${request.content}</pre></td>
 		  	</tr>
 		  	<tr>
-		  		<td><button type="button" class="btn" onclick="fnToList">목록으로</button></td>
+		  		<td align="right">
+		  			<button type="button" class="btn" onclick="fnToList()">목록으로</button>&nbsp;
+		  			<button type="button" class="btn" onclick="fnAnswer()">답변달기</button>
+		  		</td>
 		  	</tr>
 		  </table>
 	  </form>

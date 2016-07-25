@@ -28,13 +28,13 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public void writeRequest(RequestVO vo) throws Exception {
 		// TODO Auto-generated method stub
-
+		dao.writeRequest(vo);
 	}
 
 	@Override
 	public void writeAnswer(RequestVO vo) throws Exception {
 		// TODO Auto-generated method stub
-
+		dao.writeAnswer(vo);
 	}
 
 }

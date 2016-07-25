@@ -31,6 +31,10 @@
 			return;
 		}
 	}
+	
+	function fnList(){
+		location.href = "notice";
+	}
 </script>
 <body>
 <!-- 상단바 시작 -->
@@ -97,10 +101,13 @@
 		  		<th>제목 : ${notice.title}</th>
 		  	</tr>
 		  	<tr>
-		  		<td>${notice.content}</td>
+		  		<td><pre>${notice.content}</pre></td>
 		  	</tr>
 		  	<tr>
-		  		<td><button type="button" class="btn" onclick="fnDelete()">삭제</button></td>
+		  		<td align="right">
+		  			<button type="button" class="btn" onclick="fnDelete()">삭제</button>
+		  			<button type="button" class="btn" onclick="fnList()">목록으로</button>
+		  		</td>
 		  	</tr>
 		  </table>
 	  </form>

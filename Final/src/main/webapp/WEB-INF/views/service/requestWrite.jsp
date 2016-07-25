@@ -80,7 +80,7 @@
 	  </div>
 	  <!-- Tab panes -->
 	  <div class="col-sm-6">
-		  <form class="form-horizontal" action="requestComplete">
+		  <form class="form-horizontal" name="form" action="requestComplete" method="POST">
 		  	 <input type="hidden" name="m_code" value="1"/>
 			  <div class="form-group">
 			    <label for="title" class="col-sm-2 control-label">제목</label>
@@ -92,7 +92,7 @@
 			  <div class="form-group">
 			    <label for="content" class="col-sm-2 control-label">내용</label>
 			    <div class="col-sm-8">
-			      <textarea class="form-control" rows="20" cols="10" name="content"></textarea>
+			      <textarea class="form-control" id="contentText" name="content" rows="20" cols="10"></textarea>
 			    </div>
 			    <div class="col-sm-2"></div>
 			  </div>
