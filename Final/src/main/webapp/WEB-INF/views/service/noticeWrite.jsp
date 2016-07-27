@@ -72,9 +72,9 @@
 	  <div class="col-sm-2"></div>
 	  <div class="col-sm-2" style="background-color: #eeeeee; padding-top:1%; padding-bottom: 20%">
 		  <ul class="nav nav-pills nav-stacked" role="tablist">
-		    <li role="presentation"><a href="/service/notice" aria-controls="notice" role="tab"><span style="color: #aaaaaa; font-size: medium">공지사항</span></a></li>
+		    <li role="presentation" class="active"><a href="/service/notice?page=1" aria-controls="notice" role="tab"><span style="font-size: medium">공지사항</span></a></li>
 		    <li role="presentation"><a href="/service/faq" aria-controls="faq" role="tab"><span style="color: #aaaaaa; font-size: medium">FAQ</span></a></li>
-		    <li role="presentation" class="active"><a href="/service/request" aria-controls="request" role="tab"><span style="font-size: medium">1:1문의</span></a></li>
+		    <li role="presentation"><a href="/service/request" aria-controls="request" role="tab"><span style="color: #aaaaaa; font-size: medium">1:1문의</span></a></li>
 
 		  </ul>
 	  </div>

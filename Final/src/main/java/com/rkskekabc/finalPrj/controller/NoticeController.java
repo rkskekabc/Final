@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rkskekabc.finalPrj.domain.NoticeVO;
+import com.rkskekabc.finalPrj.domain.PagingVO;
 import com.rkskekabc.finalPrj.domain.RequestVO;
 import com.rkskekabc.finalPrj.service.NoticeService;
 import com.rkskekabc.finalPrj.service.RequestService;
@@ -20,8 +21,10 @@ public class NoticeController {
 	private RequestService rService;
 	
 	@RequestMapping("notice")
-	public String noticeHandler(Model model) throws Exception{
+	public String noticeHandler(int page, Model model) throws Exception{
+		PagingVO pageVO = new PagingVO(service.getNoticeList().size(), page);
 		model.addAttribute("noticeList", service.getNoticeList());
+		model.addAttribute("pageVO", pageVO);
 		return "service/notice";
 	}
 	
@@ -84,12 +87,12 @@ public class NoticeController {
 	@RequestMapping("noticeComplete")
 	public String noticeCompleteHandler(NoticeVO vo) throws Exception{
 		service.writeNotice(vo);
-		return "redirect:/service/notice";
+		return "redirect:/service/notice?page=1";
 	}
 	
 	@RequestMapping("noticeDelete")
 	public String noticeDeleteHandler(int n_code) throws Exception{
 		service.deleteNotice(n_code);
-		return "redirect:/service/notice";
+		return "redirect:/service/notice?page=1";
 	}
 }

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,10 @@
 	.nav-pills>li.active>a,.nav-pills>li.active>a:focus,.nav-pills>li.active>a:hover{
 		background-color:#eeeeee;
 		color:#5cb85c;
+	}
+	
+	.col-sm-6{
+		text-align: center;
 	}
 </style>
 <script>
@@ -77,7 +82,7 @@
 	  <div class="col-sm-2"></div>
 	  <div class="col-sm-2" style="background-color: #eeeeee; padding-top:1%; padding-bottom: 20%">
 		  <ul class="nav nav-pills nav-stacked" role="tablist">
-		    <li role="presentation" class="active"><a href="/service/notice" aria-controls="notice" role="tab"><span style="font-size: medium">공지사항</span></a></li>
+		    <li role="presentation" class="active"><a href="/service/notice?page=1" aria-controls="notice" role="tab"><span style="font-size: medium">공지사항</span></a></li>
 		    <li role="presentation"><a href="/service/faq" aria-controls="faq" role="tab"><span style="color: #aaaaaa; font-size: medium">FAQ</span></a></li>
 		    <li role="presentation"><a href="/service/request" aria-controls="request" role="tab"><span style="color: #aaaaaa; font-size: medium">1:1문의</span></a></li>
 		  </ul>
@@ -85,21 +90,70 @@
 	  <!-- Tab panes -->
 	  <div class="col-sm-6">
 		  <table class="table table-striped">
-		  	<tr>
-		  		<th>번호</th><th>제목</th><th>작성자</th><th>작성일</th>
+		  	<tr style="font-weight: bold">
+		  		<td>번호</td><td>제목</td><td>작성자</td><td>작성일</td>
 		  	</tr>
-		  	<c:forEach var="i" items="${noticeList}">
+		  	<c:if test="${pageVO.numPerPage*pageVO.page-1 >= fn:length(noticeList)}">
+		  		<c:set var="finalData" value="${fn:length(noticeList)-1}"/>
+		  	</c:if>
+		  	<c:if test="${pageVO.numPerPage*pageVO.page-1 < fn:length(noticeList)}">
+		  		<c:set var="finalData" value="${pageVO.numPerPage*pageVO.page-1}"/>
+		  	</c:if>
+		  	<c:forEach var="i" begin="${pageVO.startPerPage-1}" end="${finalData}">
 		  		<tr>
-		  			<td>${i.n_code}</td>
-		  			<td><a href="noticeRead?n_code=${i.n_code}">${i.title}</a></td>
-		  			<td>${i.writer}</td>
-		  			<td>${i.regdate}</td>
+		  			<td>${noticeList[i].n_code}</td>
+		  			<td><a href="noticeRead?n_code=${noticeList[i].n_code}">${noticeList[i].title}</a></td>
+		  			<td>${noticeList[i].writer}</td>
+		  			<td>${noticeList[i].regdate}</td>
 		  		</tr>
 		  	</c:forEach>
 		  	<tr>
 		  		<td align="center" colspan="4" style="background-color: #ffffff"><button type="button" class="btn btn-success" onclick="fnNotice()">글작성</button></td>
 		  	</tr>
 		  </table>
+		  
+			<nav aria-label="Page navigation" >
+			  <ul class="pagination">
+			    <c:if test="${pageVO.nowBlock eq 1}">
+				    <li class="disabled">
+				        <span aria-hidden="true">&laquo;</span>
+				    </li>
+			    </c:if>
+			    <c:if test="${pageVO.nowBlock != 1}">
+				    <li>
+				      <a href="notice?page=${pageVO.startPagePerBlock-1}" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>
+			    </c:if>
+			    <c:if test="${pageVO.pagePerBlock*pageVO.nowBlock >= pageVO.totalPage}">
+			    	<c:set var="finalPage" value="${pageVO.totalPage}" />
+			    </c:if>
+			    <c:if test="${pageVO.pagePerBlock*pageVO.nowBlock < pageVO.totalPage}">
+			    	<c:set var="finalPage" value="${pageVO.pagePerBlock*pageVO.nowBlock}" />
+			    </c:if>
+			    <c:forEach var="i" begin="${pageVO.startPagePerBlock}" end="${finalPage}">
+			    	<c:if test="${pageVO.page eq i}">
+			    		<li class="active"><a href="notice?page=${i}">${i}</a></li>
+			    	</c:if>
+			    	<c:if test="${pageVO.page != i}">
+			    		<li><a href="notice?page=${i}">${i}</a></li>
+			    	</c:if>
+			    </c:forEach>
+			    <c:if test="${pageVO.nowBlock eq pageVO.totalBlock}">
+				    <li class="disabled">
+				        <span aria-hidden="true">&raquo;</span>
+				    </li>
+			    </c:if>
+			    <c:if test="${pageVO.nowBlock != pageVO.totalBlock}">
+				    <li>
+				      <a href="notice?page=${finalPage+1}" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+			    </c:if>
+			  </ul>
+			</nav>
 	  </div>
 	  <div class="col-md-2"></div>
   </div>

@@ -80,19 +80,25 @@
 	  </div>
 	  <!-- Tab panes -->
 	  <div class="col-sm-6">
-		  <form class="form-horizontal" name="form" action="requestComplete" method="POST">
-		  	 <input type="hidden" name="m_code" value="1"/>
+		  <form class="form-horizontal" action="requestAnswerComplete" method="POST">
+		  	 <input type="hidden" name="r_code" value="${request.r_code}" />
 			  <div class="form-group">
 			    <label for="title" class="col-sm-2 control-label">제목</label>
 			    <div class="col-sm-8">
-			      <input type="text" class="form-control" name="title" placeholder="제목">
+			      <input type="text" class="form-control" name="title" value="${request.title}" readonly="readonly" />
 			    </div>
 			    <div class="col-sm-2"></div>
 			  </div>
 			  <div class="form-group">
 			    <label for="content" class="col-sm-2 control-label">내용</label>
 			    <div class="col-sm-8">
-			      <textarea class="form-control" id="contentText" name="content" rows="20" cols="10"></textarea>
+			      <textarea class="form-control" rows="20" cols="10" name="content">${request.content}
+
+
+=====================================
+
+
+</textarea>
 			    </div>
 			    <div class="col-sm-2"></div>
 			  </div>
